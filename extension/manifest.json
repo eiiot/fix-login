@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Fix Stanford Login",
+  "version": "0.1.0",
+  "description": "Prevents the dreaded “Enter the URL you want to reach in your browser's address bar and try again.” By stanf.org",
+  "minimum_chrome_version": "112",
+  "permissions": ["storage", "webRequest"],
+  "host_permissions": ["https://*.stanford.edu/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://login.stanford.edu/idp/profile/*"],
+      "js": ["login.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_title": "Fix Stanford Login",
+    "default_icon": {
+      "16": "icons/tree-16.png",
+      "32": "icons/tree-32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/tree-16.png",
+    "32": "icons/tree-32.png",
+    "48": "icons/tree-48.png",
+    "128": "icons/tree-128.png"
+  }
+}

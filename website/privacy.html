@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fix Stanford Login — Privacy Policy</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/png" href="/assets/tree.png">
+  <link rel="canonical" href="https://fixlogin.stanf.org/privacy">
+</head>
+<body>
+<main class="policy">
+  <p class="back"><a href="/">← Fix Stanford Login</a></p>
+  <h1>Privacy Policy</h1>
+  <p>Effective October 5, 2026. This policy describes version 0.1.0 of the Fix Stanford Login browser extension, provided by stanf.org.</p>
+  <h2>Purpose</h2>
+  <p>The extension prevents repeated Stanford login form submissions and recovers from recognized stale-request and CSRF errors by returning your tab to the Stanford service that started the login.</p>
+  <h2>Data used on your device</h2>
+  <p>The extension observes top-level HTTPS navigation URLs on Stanford domains to identify the originating service. A retained destination can include its path, query parameters, and fragment. Known authentication callback URLs and URLs containing specified authentication parameter names are excluded from retained destinations.</p>
+  <p>On <code>login.stanford.edu/idp/profile/</code> pages, the extension checks the page title, the presence of a password field, and error-page text. It examines form method and action metadata and tracks whether a form has already been submitted to prevent duplicate submissions. It does not read the values entered into login fields or log keystrokes, mouse positions, or clicks.</p>
+  <p>The extension temporarily stores the originating service URL, Chrome tab and request identifiers, and recent recovery timestamps in <code>chrome.storage.session</code>. These records let it recover the correct tab and limit automatic retries. Records are removed when a tab closes, and session storage is cleared when the browser session ends. This data is not synced to a cloud account.</p>
+  <h2>Credentials and network data</h2>
+  <p>The extension does not read or store typed usernames, passwords, cookies, request bodies, or request headers. Stanford's own sign-in pages continue to submit credentials directly to Stanford as part of their normal login process.</p>
+  <h2>Sharing and other uses</h2>
+  <p>The extension sends no telemetry or analytics to stanf.org or another collection service. Its processing stays on your device. Recovery navigates your browser to the originating Stanford service, which receives a normal browser request and is governed by that service's privacy practices.</p>
+  <p>We do not sell extension user data or use it for advertising, profiling, creditworthiness, or lending. We do not transfer extension user data for purposes unrelated to fixing Stanford login failures. The extension's use of user data complies with the Chrome Web Store User Data Policy, including its Limited Use requirements.</p>
+  <h2>This website</h2>
+  <p>The homepage serves its videos and other assets directly through Cloudflare Pages. It does not set cookies or include analytics scripts. Cloudflare receives ordinary web requests to serve the site; its handling of network metadata is governed by <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare’s privacy policy</a>.</p>
+  <h2>Your control and contact</h2>
+  <p>You can stop the extension's processing by disabling or uninstalling it in Chrome. For privacy questions, use the developer contact information on the extension's Chrome Web Store listing.</p>
+</main>
+</body>
+</html>

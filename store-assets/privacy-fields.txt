@@ -1,0 +1,31 @@
+These fields describe Fix Stanford Login version 0.1.0.
+
+SINGLE PURPOSE DESCRIPTION
+Prevent duplicate submissions and automatically recover from Stanford's stale-request and CSRF login errors so users can continue signing in.
+
+STORAGE JUSTIFICATION
+Uses chrome.storage.session to keep the originating Stanford service URL, tab/request identifiers, and recent recovery timestamps. This lets failed sign-ins restart at the correct service and limits automatic retries to avoid loops. Records are removed when tabs close, and session data is cleared when the browser session ends. Login field values and cookies are not stored.
+
+WEBREQUEST JUSTIFICATION
+Observes top-level GET navigations to HTTPS Stanford websites to remember the service URL that initiated a login, including deep links across redirects. When a recognized login failure occurs, this URL lets the extension restart through the correct service. The listener does not block or modify network requests and does not inspect request bodies, headers, or cookies.
+
+HOST PERMISSION JUSTIFICATION
+HTTPS access to *.stanford.edu is needed to identify the originating service across Stanford websites and redirects, then return to that service after a login failure. The content script runs only on login.stanford.edu/idp/profile/ pages, where it prevents repeated form submissions and checks page titles/error text for recognized failures. No content scripts run on other Stanford services, and no host access outside Stanford is requested.
+
+REMOTE CODE
+Select: No, I am not using Remote code.
+If a justification is required: All JavaScript is included in the extension package. The extension does not load external scripts or WebAssembly, or evaluate downloaded code.
+
+DATA USAGE
+Check Web history: Stanford navigation URLs used to recover the originating service.
+Check User activity: top-level navigation metadata and temporary form-submission state used to prevent duplicate submissions.
+Check Website content: login page titles, error-page text, and form metadata used to recognize failures.
+Leave the other data categories unchecked for this version. No login field values or cookies are read. The listed data is handled locally, without telemetry or external collection.
+Check all three limited-use certifications.
+
+PRIVACY POLICY URL
+Publish privacy.html at a publicly accessible HTTPS URL and use that live URL. This local file is a draft ready to host; it has not been published.
+
+Official guidance:
+https://developer.chrome.com/docs/webstore/cws-dashboard-privacy
+https://developer.chrome.com/docs/webstore/program-policies/user-data-faq
